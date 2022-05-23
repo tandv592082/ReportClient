@@ -1,0 +1,32 @@
+html, * {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+.full-w {
+    width: 100%;
+}
+
+.full-h {
+    height: 100%;
+}
+
+
+.zoom-enter-active, .zoom-leave-active {
+
+    transition: transform .4s;
+    transform: scale(1);
+}
+
+.zoom-enter {
+    transform: scale(0.97);
+    transition: transform .4s;
+}
+.zoom-leave-to {
+    transform: scale(0.9);
+    transition: transform .2s;
+}
