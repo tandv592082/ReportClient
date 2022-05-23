@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkwork"]=self["webpackChunkwork"]||[]).push([[365],{1365:function(n,t,e){e.r(t),e.d(t,{default:function(){return c}});var r=function(){var n=this,t=n.$createElement,e=n._self._c||t;return e("div",{staticClass:"not-found-page"},[e("h1",[n._v("TRANG MÀ BẠN TÌM KIẾM KHÔNG CÓ!")]),e("v-btn",{attrs:{depressed:"",color:"primary",link:!0,to:"/"}},[n._v(" Về trang chủ ")])],1)},u=[],a={name:"NotFoundPage"},l=a,s=e(1001),o=(0,s.Z)(l,r,u,!1,null,null,null),c=o.exports}}]);
+//# sourceMappingURL=365.417f0d17.js.map
