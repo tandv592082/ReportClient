@@ -171,7 +171,7 @@ import {
 import { getAllUser } from '@/api/users';
 
 import { cloneObj } from '@/utils/base';
-import { isBeforeNow } from '@/utils/date';
+// import { isBeforeNow } from '@/utils/date';
 
 export default {
   name: 'UsersPage',
@@ -284,7 +284,6 @@ export default {
         const [users, works] = await Promise.all([getAllUser(), getAllWork()]);
         this.userData = users.data;
         this.workData = works.data
-          .filter((w) => isBeforeNow(w.date))
           .map((w) => {
             let wDate = w.date;
             // eslint-disable-next-line prefer-destructuring

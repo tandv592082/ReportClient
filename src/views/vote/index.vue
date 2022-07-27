@@ -10,7 +10,7 @@
     >
       {{ msg }}
     </v-snackbar>
-    <v-card v-if="voteTimeLeft && voteTimeLeft >= 0">
+    <v-card v-if="voteTimeLeft && voteTimeLeft < 0">
       <v-img
         class="white--text align-end"
         height="200px"
@@ -51,12 +51,11 @@
           full-icon="mdi-star"
           half-icon="mdi-star-half-full"
           hover
-          :disabled="loading || isTodayVoted"
+          :readonly="loading || isTodayVoted"
           dense
           length="5"
           size="48"
-          :value="5"
-          :v-model="data.vote"
+          v-model="data.vote"
         ></v-rating>
         <div class="mt-4">
           <v-btn
@@ -114,7 +113,8 @@ export default {
     ...mapGetters('user', ['user']),
   },
   async created() {
-    this.isTodayVoted = isTodayVoted();
+    this.isTodayVoted = isTodayVoted(this.user.id);
+    console.log(this.isTodayVoted);
     await this.getCurrentWork();
   },
   methods: {
@@ -122,7 +122,9 @@ export default {
       try {
         this.loading = false;
         const respone = await getAllWork();
+        console.log(respone);
         this.workData = getTodayWork(respone.data);
+        console.log(this.workData);
         this.data.work = this.workData?.id;
         this.data.user = this.user.id;
         this.voteTimeLeft = getVoteOpening(this.workData);
@@ -136,9 +138,10 @@ export default {
     async createVote() {
       try {
         this.loading = false;
+        console.log(this.data);
         await createVote(this.data);
         this.isTodayVoted = true;
-        setTodayVoted();
+        setTodayVoted(this.user.id);
         this.success = true;
         this.snackbar = true;
         this.msg = 'Đánh giá thành công!';

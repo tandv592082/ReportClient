@@ -21,7 +21,7 @@ export function getVoteOpening(work) {
     const now = Date.now() - new Date(work.date).getTime();
     const { expires } = work;
     const [hours, minutes] = expires.split(':');
-    const expiresInMs = +hours * 60 * 60 * 1000 + +minutes * 60 * 1000;
+    const expiresInMs = +hours * 60 * 60 * 1000 + +minutes * 60 * 1000 + 24 * 60 * 60 * 1000;
     return now - expiresInMs;
   }
   return null;

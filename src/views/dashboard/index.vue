@@ -17,7 +17,7 @@
       >
         <!-- eslint-disable-next-line vue/valid-v-slot -->
         <template v-slot:item.votes="{ item }">
-          <v-chip :color="getVoteColor(item.votes)" dark>
+          <v-chip :color="getVoteColor(item.isWorkNotOpening)" dark>
             {{ item.isWorkNotOpening ? item.votes : 'Đang chờ' }}
           </v-chip>
         </template>
@@ -97,7 +97,7 @@ export default {
   },
   methods: {
     getVoteColor(vote) {
-      return vote === 'Đang chờ' ? 'orange' : 'green';
+      return !vote ? 'orange' : 'green';
     },
     getStatusColor(status) {
       return status ? 'green' : 'orange';
@@ -105,8 +105,10 @@ export default {
     async getAllWorks() {
       try {
         this.loading = true;
-        const respone = await getAllWork();
-        const { data } = respone;
+        const response = await getAllWork();
+        console.log(response);
+        const { data } = response;
+        console.log(data);
         this.works = getWeekWorks(data);
         console.log(this.works);
       } catch (error) {
